@@ -1,4 +1,5 @@
 var options = ["Myself", "Friend", "Expert", "Crowd", "AI Bot"];
+var timeoutId;
 
 function shuffle(array) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
@@ -53,6 +54,7 @@ function showOPt(seqImg, seqCap, opt){
 }
 
 var numberPress = function(kn){
+	window.clearTimeout(timeoutId);
 	var n = kn - 48;
 	if ((n >= 1) && (n <= 6)){
 		return n;
@@ -94,6 +96,13 @@ function fadeout(n){
 	}
 }
 
+var handleGameTimeout = function(){
+	// CLEAR DATA?
+	timeoutId = setTimeout(function(){
+		$.get( "/cleanballs", function(data) {});
+		window.location.href = "/";
+	}, 30000);
+}
 
 $(document).ready(function(){
 	$(document).keypress(function(e) {

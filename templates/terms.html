@@ -22,6 +22,10 @@ If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac
 	var originalList = [1,2,3];
 	var randomList = shuffle(originalList);
 
+	timeoutId = setTimeout(function(){
+		window.location.href = "/";
+	}, 60000);
+
 	sessionStorage.setItem("Qs",randomList);
 	//document.getElementById("questionsOrder").innerHTML = sessionStorage.getItem("Qs");
 

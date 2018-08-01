@@ -7,30 +7,32 @@
 {% endblock %}
 
 {% block javascript %}
-		showQ(sessionStorage.getItem("Qs")[0]);
+	handleGameTimeout();
 
-		$.get( "/btn_Qs", function(data) {});
-		var date1 = new Date();
-		var ms1 = date1.getTime();
+	showQ(sessionStorage.getItem("Qs")[0]);
 
-		$(document).keypress(function(e) {
-			var n = numberPress(e.which);
+	$.get( "/btn_Qs", function(data) {});
+	var date1 = new Date();
+	var ms1 = date1.getTime();
 
-			if ((n >= 1) && (n <= 5)){
-				var date2 = new Date();
-				var ms2 = date2.getTime();
-				sessionStorage.setItem("elapseP1", (ms2-ms1));
+	$(document).keypress(function(e) {
+		var n = numberPress(e.which);
 
-				if (localStorage.getItem("newGame") == "newballs") {
-					$.get( "/motors_page1", function(data) {});
-				}
+		if ((n >= 1) && (n <= 5)){
+			var date2 = new Date();
+			var ms2 = date2.getTime();
+			sessionStorage.setItem("elapseP1", (ms2-ms1));
 
-				sessionStorage.setItem("choiceP1", options[n-1]);
-				fadeout(n);
-
-				setTimeout(function(){
-					window.location.href = '/p2';
-				}, 2000);
+			if (localStorage.getItem("newGame") == "newballs") {
+				$.get( "/motors_page1", function(data) {});
 			}
-		});
+
+			sessionStorage.setItem("choiceP1", options[n-1]);
+			fadeout(n);
+
+			setTimeout(function(){
+				window.location.href = '/p2';
+			}, 2000);
+		}
+	});
 {% endblock %}
