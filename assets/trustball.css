@@ -42,6 +42,20 @@ h2 {
 
 .hidden { display:none; }
 
+.elementToFadeInAndOut {
+    -webkit-animation: fadeinout 1s infinite;
+    animation: fadeinout 1s infinite;
+    opacity: 0;
+}
+
+@-webkit-keyframes fadeinout {
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  50% { opacity: 1; }
+}
+
 .bender { font-family: Bender, sans-serif; }
 
 p {

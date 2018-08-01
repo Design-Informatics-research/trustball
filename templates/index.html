@@ -3,7 +3,7 @@
 {% block content %}
 	<h1>TRUST BALL</h1>
 	<div class="start">
-		<p>&#171; Press Any Button To Start &#187;</p>
+		<p class="elementToFadeInAndOut">&#171; Press Any Button To Start &#187;</p>
 	</div>
 {% endblock %}
 
@@ -11,6 +11,9 @@
   sessionStorage.clear();
 
   $.get( "/btn_index", function(data) {});
+
+  $( "html" ).css({  margin: "-100px" });
+  $( "html" ).animate({  margin: "-11px" }, 2500);
 
   $(document).keypress(function(e) {
     var n = numberPress(e.which);
