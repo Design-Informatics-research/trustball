@@ -97,8 +97,8 @@ function fadeout(n){
 }
 
 var handleGameTimeout = function(){
-	// CLEAR DATA?
 	timeoutId = setTimeout(function(){
+		localStorage.setItem("newGame", "newballs");
 		$.get( "/cleanballs", function(data) {});
 		window.location.href = "/";
 	}, 30000);
