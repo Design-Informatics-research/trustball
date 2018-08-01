@@ -5,7 +5,9 @@ import reset as reset
 import json
 
 app = Flask(__name__)
-
+blink_thread = Thread2(target=btn.blink)
+buttonAll_thread = Thread2(target=btn.buttonAll)
+buttonTwo_thread = Thread2(target=btn.buttonTwo)
 
 @app.route('/assets/<path>')
 def send_asset(path):
@@ -37,17 +39,17 @@ def p3():
 
 @app.route("/btn_index")
 def btn_index():
-  btn.blink()
+  blink_thread.start()
   return "ok"
 
 @app.route("/btn_Qs")
 def btn_Qs():
-  btn.buttonAll()
+  buttonAll_thread.start()
   return "ok"
 
 @app.route("/btn_summary")
 def btn_summary():
-  btn.buttonTwo()
+  buttonTwo_thread.start()
   return "ok"
 
 @app.route("/motor_begin")
