@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
-	<p class="bender" id="context"></p>
-	<p class="bender" id="question">Who would you trust to decide on your behalf?</p>
+	<p class="bender" id="question">
+		<span id="context"></span><br/><br/>
+		<span class="bold">Who would you trust to decide on your behalf?</span>
+	</p>
 	{% include "options.jinja" %}
 {% endblock %}
 
