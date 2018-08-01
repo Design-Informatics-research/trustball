@@ -50,11 +50,11 @@ def get_servo_max():
 
 def open(channel=0, pulse_length=servo_min):
     pwm.set_pwm(channel, 0, pulse_length)
-    #time.sleep(0.5)
+    time.sleep(0.5)
 
 def close(channel=0, pulse_length=servo_max):
     pwm.set_pwm(channel, 0, pulse_length)
-    #time.sleep(0.5)
+    time.sleep(0.3)
 
 #def random(channel=0):
     #open(channel, rnd.randrange(servo_min, servo_max))
@@ -107,21 +107,26 @@ def random(channel=0, lap=2):
 
 def page1():
     open(1)
+    close(1)
     random(2)
     #time.sleep(0.1)
-    close(1)
+    
 
 def page2():
     open(3)
-    random(4)
-    #time.sleep(0.2)
     close(3)
+    random(4)
+    #time.sleep(0.1)
 
 def page3():
     open(5)
-    random(6)
-    #time.sleep(0.2)
     close(5)
+    random(6)
+    #time.sleep(0.1)
 
-#open_slower()
+open_slower()
+time.sleep(1)
 page1()
+page2()
+page3()
+#random(2)
