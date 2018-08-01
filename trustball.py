@@ -5,6 +5,7 @@ import reset as reset
 import json
 import time
 from thread2 import StopThread, Thread2
+import RPi.GPIO as GPIO
 
 app = Flask(__name__)
 blink_thread = Thread2(target=btn.blink)
@@ -18,6 +19,8 @@ def stop_threads():
         buttonAll_thread.stop()
     if buttonTwo_thread and buttonTwo_thread.isAlive():
         buttonTwo_thread.stop()
+    time.sleep(0.4)
+    GPIO.cleanup()
 
 @app.route('/assets/<path>')
 def send_asset(path):
@@ -50,7 +53,6 @@ def p3():
 @app.route("/btn_index")
 def btn_index():
   stop_threads()
-  time.sleep(1)
   blink_thread = Thread2(target=btn.blink)
   blink_thread.start()
   return "ok"

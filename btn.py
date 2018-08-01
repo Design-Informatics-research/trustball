@@ -46,10 +46,10 @@ def buttonAll():
     if GPIO.input(21) == False:
       pyautogui.press('6')
       print('reset')
-      GPIO.cleanup()
+      #GPIO.cleanup()
       break
     if b==1:
-      GPIO.cleanup()
+      #GPIO.cleanup()
       break
     for button in buttons:
       #print(button)
@@ -62,7 +62,7 @@ def buttonAll():
           if not k==button:
             GPIO.output(buttons[k]['led'], False)
         pyautogui.press(key)
-        os.system('mpg123 -q Jingle_Lose_00.mp3 &')
+        os.system('aplay OldSchool10.wav &')
         time.sleep(2)
       else:
         GPIO.output(led_pin, True)
@@ -75,10 +75,10 @@ def buttonAll_nodelay():
     if GPIO.input(21) == False:
       pyautogui.press('6')
       print('reset')
-      GPIO.cleanup()
+      #GPIO.cleanup()
       break
     if b==1:
-      GPIO.cleanup()
+      #GPIO.cleanup()
       break
     for button in buttons:
       button_state = GPIO.input(button)
@@ -103,10 +103,10 @@ def buttonTwo():
     if GPIO.input(21) == False:
       pyautogui.press('6')
       print('reset')
-      GPIO.cleanup()
+      #GPIO.cleanup()
       break
     if b==1:
-      GPIO.cleanup()
+      #GPIO.cleanup()
       break
     for button in buttons24:
       button_state = GPIO.input(button)
@@ -114,7 +114,7 @@ def buttonTwo():
       key = buttons24[button]['key']
       if button_state == False:
         pyautogui.press(key)
-        os.system('mpg123 -q Jingle_Lose_00.mp3 &')
+        os.system('aplay Beep6.wav &')
         b = 1
         for k in buttons24:
           if not k==button:
@@ -135,7 +135,7 @@ def blink():
     #print('im here')
     if ((b == 1) or (c == 1)):
       print(button)
-      GPIO.cleanup()
+      #GPIO.cleanup()
       break
     for button in order:
       for k in order:  

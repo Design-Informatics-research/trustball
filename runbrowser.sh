@@ -4,7 +4,7 @@ clear
 
 cd ~/trustball
 
-sleep 8s;
+sleep 10s;
 
 # sudo -u pi epiphany-browser -a --profile ~/.config http://localhost:5000 --display=:0 &
 chromium-browser http://localhost:5000 --start-maximized &
