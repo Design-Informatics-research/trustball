@@ -17,15 +17,13 @@ function shuffle(array) {
 }
 
 function showQ(n){
-	if (n == 1) {
-		document.getElementById("context").innerHTML = "The Health Service wants to share your data for research purposes.";
-	}
-	if (n == 2) {
-		document.getElementById("context").innerHTML = "The Bank wants to share your data for research purposes.";
-	}
-	if (n == 3) {
-		document.getElementById("context").innerHTML = "Your employer wants to share your data for research purposes.";
-	}
+	var contexts = ["A game asks you to share music playlists and listening habits to develop an algorithm to change in-game-music according to your taste and mood.",
+		"Your weather app request access to your location and  audio data to investigate noise pollution in your city. This data will be shared with the local council to review speed limits.",
+		"Your sibling shares a survey with you to plan a joint holiday. They use an online service that asks for access to your entire browser history.", 
+		"Your boss requires you to download a new chat service to communicate with your colleagues. You download the service and it asks for access to all your contacts in your address book, not only work-related ones. If you don’t agree, you can’t use the service for work.",
+		"To provide personalised food boxes, local producers ask you to share social media likes of food pictures.",
+		"Public health services ask you share anonymized  medical records with third parties to improve services."];
+	document.getElementById("context").innerHTML = contexts[n-1];
 }
 
 function showOPt(seqImg, seqCap, opt){
@@ -101,7 +99,7 @@ var handleGameTimeout = function(){
 		localStorage.setItem("newGame", "newballs");
 		$.get( "/cleanballs", function(data) {});
 		window.location.href = "/";
-	}, 30000);
+	}, 40000);
 }
 
 $(document).ready(function(){

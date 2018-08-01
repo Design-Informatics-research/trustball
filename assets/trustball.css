@@ -10,7 +10,7 @@ body,html {
 	padding: 0px; 
 	font-family: Arcade, sans-serif;
 	font-size:18px;
-    	letter-spacing: 11px;
+	letter-spacing: 11px;
 }
 
 html {
@@ -22,7 +22,7 @@ body {
 	margin: 0px; 
 	background-image: url(background.jpg);
 	background-repeat: no-repeat;
-    	background-size: 100%;
+	background-size: 100%;
 }
 
 h1 {
@@ -64,18 +64,29 @@ div.credits {
 	top:5vh;
 	font-size:1.4em;
 	font-family: Bender, sans-serif;
-    	letter-spacing: 2px;
+	letter-spacing: 2px;
+}
+
+div.agreed, div.disagreed {
+	width: 88%;
+	border: none;
+	margin: 0 6%;
+	font-family: Bender, sans-serif;
+	letter-spacing: 1px;
+    position: absolute;
+    top: 40vh;
+    font-size: 2em;
 }
 
 div.start { bottom: 6vh; font-size:1.7em; }
 div.p { top: 50vh; }
 div.p.terms {
 	top: 8vh;
-    	font-family: Bender, sans-serif;
-    	letter-spacing: 2px;
-    	color: wheat;
-    	width: 74%;
-    	margin: 0 13%;
+	font-family: Bender, sans-serif;
+	letter-spacing: 2px;
+	color: wheat;
+	width: 74%;
+	margin: 0 13%;
 }
 
 div.p.takeball {
@@ -89,18 +100,20 @@ div.p.summary {
 }
 
 p#context, p#question {
+    text-shadow: 0px 0px 1px black;
 	position: absolute;
-        width: 88%;
-    	margin: 0px 6%;
+	width: 88%;
+	margin: 0px 6%;
 	font-size: 2.2em;
+	letter-spacing: 0px;
 }
 
 p#context {
-    	top: 31vh;
+	top: 31vh;
 }
 
 p#question {
-    	top: 52vh;
+	top: 52vh;
 }
 
 ul {
@@ -110,11 +123,11 @@ ul {
 
 #ul_agreementBtn, #ul_questions {
 	position: absolute;
-    	text-align: center;
-        bottom: 5vh;
-    	width: 92%;
-    	padding: 0px;
-    	margin: 0 4%;
+	text-align: center;
+	bottom: 5vh;
+	width: 92%;
+	padding: 0px;
+	margin: 0 4%;
 }
 
 #ul_agreementBtn {
@@ -133,12 +146,13 @@ ul {
 }
 
 li {
-    	display: inline-block;
-    	float: none;
-    	width: 19%;
+	display: inline-block;
+	float: none;
+	width: 19%;
 }
 
-li p {  margin: 0.3em 0em; font-size: 1.5em; }
+li p {  margin: 0.3em 0em; 
+	font-size: 1.5em; text-shadow: 0px 0px 3px black; }
 
 button {
 	text-align: center;

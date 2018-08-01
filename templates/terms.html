@@ -10,6 +10,14 @@ If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac
 </p>
 	</div>
 
+	<div class="hidden agreed">
+		<p>You agreed to the terms after <span id="seconds"></span> seconds! Did you really read them? Your data is now locked in the ball! Answer the questions to get it out!</p>
+	</div>
+
+	<div class="hidden disagreed">
+		<p>Thanks for reading our terms. We will not process your data. But you can still play Trust Ball.</p>
+	</div>
+
 	<ul id="ul_agreementBtn">
 		<li>&gt; I AGREE &lt;</li>
 		<li>&gt; I DON'T AGREE &lt;</li>
@@ -19,7 +27,7 @@ If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac
 {% block javascript %}
 	var date1 = new Date();
 	var ms1 = date1.getTime();
-	var originalList = [1,2,3];
+	var originalList = [1,2,3,4,5,6];
 	var randomList = shuffle(originalList);
 
 	timeoutId = setTimeout(function(){
@@ -31,29 +39,39 @@ If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac
 
 	$.get( "/btn_summary", function(data) {});
 
+	var transition = function(klass, mpassed){
+		$('#seconds')[0].innerHTML = mpassed/1000;
+		$('div.terms').fadeOut('slow');
+		$('#ul_agreementBtn').fadeOut('slow', function(){
+			$(klass).fadeIn();
+		});
+	}
+
 	$(document).keypress(function(e) {
 		var n = numberPress(e.which);
-		var date2 = new Date();
-		var ms2 = date2.getTime();
 
-		if (n == 2){
-			sessionStorage.setItem("elapseTerms", (ms2-ms1));
-			sessionStorage.setItem("choiceTerms", "AGREE");
-			if (localStorage.getItem("newGame") == "newballs") {
-				$.get( "/motor_begin", function(data) {});
-			}
-			//<!-- do store data -->
-			window.location.href = '/p1';
-		}
+		if (n == 2 || n == 4) {
+			var date2 = new Date();
+			var ms2 = date2.getTime();
+			var mpassed = (ms2-ms1);
 
-		if (n == 4) {
-			sessionStorage.setItem("elapseTerms", (ms2-ms1));
-			sessionStorage.setItem("choiceTerms", "DISAGREE");
-			if (localStorage.getItem("newGame") == "newballs") {
-				$.get( "/motor_begin", function(data) {});
+			if (n == 2){
+				//<!-- do store data -->
+				sessionStorage.setItem("choiceTerms", "AGREE");
+			} else  {
+				//<!-- do not store data -->
+				sessionStorage.setItem("choiceTerms", "DISAGREE");
 			}
-			//<!-- do not store data -->
-			window.location.href = '/p1';
+
+			sessionStorage.setItem("elapseTerms", mpassed);
+			transition('div.agreed', mpassed);
+			setTimeout(function(){
+				if (localStorage.getItem("newGame") == "newballs") {
+					$.get( "/motor_begin", function(data) {});
+				}
+				window.location.href = '/p1';
+			}, 7000);
+
 		}
 	});
 {% endblock %}
