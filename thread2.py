@@ -1,5 +1,6 @@
 import threading
 import sys
+import RPi.GPIO as GPIO
 
 class StopThread(StopIteration): pass
 
@@ -7,6 +8,7 @@ threading.SystemExit = SystemExit, StopThread
 
 class Thread2(threading.Thread):
     def stop(self):
+        GPIO.cleanup()
         self.__stop = True
 
     def _bootstrap(self):
