@@ -3,11 +3,21 @@ import servo as servo
 import btn as btn
 import reset as reset
 import json
+import time
+from thread2 import StopThread, Thread2
 
 app = Flask(__name__)
 blink_thread = Thread2(target=btn.blink)
 buttonAll_thread = Thread2(target=btn.buttonAll)
 buttonTwo_thread = Thread2(target=btn.buttonTwo)
+
+def stop_threads():
+    if blink_thread and blink_thread.isAlive():
+        blink_thread.stop()
+    if buttonAll_thread and buttonAll_thread.isAlive():
+        buttonAll_thread.stop()
+    if buttonTwo_thread and buttonTwo_thread.isAlive():
+        buttonTwo_thread.stop()
 
 @app.route('/assets/<path>')
 def send_asset(path):
@@ -39,16 +49,23 @@ def p3():
 
 @app.route("/btn_index")
 def btn_index():
+  stop_threads()
+  time.sleep(1)
+  blink_thread = Thread2(target=btn.blink)
   blink_thread.start()
   return "ok"
 
 @app.route("/btn_Qs")
 def btn_Qs():
+  stop_threads()
+  buttonAll_thread = Thread2(target=btn.buttonAll)
   buttonAll_thread.start()
   return "ok"
 
 @app.route("/btn_summary")
 def btn_summary():
+  stop_threads()
+  buttonTwo_thread = Thread2(target=btn.buttonTwo)
   buttonTwo_thread.start()
   return "ok"
 
