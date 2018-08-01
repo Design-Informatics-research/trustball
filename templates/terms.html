@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="p terms">
+		<p><b>Terms &amp; Conditions</b><br/><br/><br/>Trustball is a interactive game designed to research trust, data protection and consent by a team of researchers in Design Informatics at the University of Edinburgh as part of the EPSRC-funded research project PACTMAN.<br/><br/>
+The purpose of this study is to understand how people trust and negotiate data sharing and consent. Your participation in this study will help us understand how we interact with digital technologies and how we can design them better for data protection. You can take a break at any time. You can leave at any time without giving a reason.<br/><br/>
+We will record your interactions during the game. We do not collect any sensitive personal information. At times, we may ask you to fill out an anonymous survey after the game, which again is completely voluntary.<br/><br/>
+This data will be treated as confidential and will not be shared outside our research group. We may publish research papers and reports that include your comments and actions but your data will be anonymous.<br/><br/>
+If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac.uk who will delete any personal data we hold about you (such as the collected data). Otherwise, we will delete your personal data after 5 years.
+</p>
+	</div>
+
+	<ul id="ul_agreementBtn">
+		<li>&gt; I AGREE &lt;</li>
+		<li>&gt; I DON'T AGREE &lt;</li>
+	</ul>
+{% endblock %}
+
+{% block javascript %}
+	var date1 = new Date();
+	var ms1 = date1.getTime();
+	
+	var originalList = [1,2,3];
+	var randomList = shuffle(originalList);
+	sessionStorage.setItem("Qs",randomList);
+	//document.getElementById("questionsOrder").innerHTML = sessionStorage.getItem("Qs");
+                
+        $.get( "/btn_summary", function(data) {});
+
+	$(document).keypress(function(e) {
+		var n = numberPress(e.which);
+
+		if (n == 6){
+			$.get( "/cleanballs", function(data) {});
+			window.location.href = '/terms';
+		}
+
+		if (n == 2){
+			var date2 = new Date();
+			var ms2 = date2.getTime();
+			sessionStorage.setItem("elapseTerms", (ms2-ms1));
+			sessionStorage.setItem("choiceTerms", "AGREE");
+                        if (localStorage.getItem("newGame") == "newballs") {
+                        	$.get( "/motor_begin", function(data) {});
+			}
+			//<!-- do store data -->
+			window.location.href = '/p1';
+		}
+
+		if (n == 4) {
+			var date2 = new Date();
+			var ms2 = date2.getTime();
+			sessionStorage.setItem("elapseTerms", (ms2-ms1));
+			sessionStorage.setItem("choiceTerms", "DISAGREE");
+			if (localStorage.getItem("newGame") == "newballs") {
+                        	$.get( "/motor_begin", function(data) {});
+			}
+                        //<!-- do not store data -->
+				window.location.href = '/p1';
+		}
+	});
+{% endblock %}

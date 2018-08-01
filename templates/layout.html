@@ -1,0 +1,23 @@
+<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+        <meta http-equiv="refresh" content="7,url=../reset.html">
+	<title>Trust Ball</title>
+	<script type="text/javascript" src="../assets/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../assets/trustball.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/trustball.css">
+</head>
+<body>
+	<div id="trustball-content">
+		{% block content %}{% endblock %}
+	</div>
+
+	<script>
+		$(document).ready(function(){
+			{% block javascript %}{% endblock %}
+		});
+	</script>
+</body>
+</html>

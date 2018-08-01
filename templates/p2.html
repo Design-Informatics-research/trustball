@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<p class="bender" id="context"></p>
+	<p class="bender" id="question">Who would you trust to decide on your behalf?</p>
+	{% include "options.jinja" %}
+{% endblock %}
+
+{% block javascript %}
+		showQ(sessionStorage.getItem("Qs")[2]);
+
+		var options = ["Myself", "Friend", "Expert", "Crowd", "AI Bot"];
+
+                $.get( "/btn_Qs", function(data) {});
+		var date1 = new Date();
+		var ms1 = date1.getTime();
+
+		$(document).ready(function(){
+			{$(document).keypress(function(e) {
+				
+				var n = numberPress(e.which);
+				if (n == 6){
+        				$.get( "/cleanballs", function(data) {});
+					window.location.href = "/p2";
+     				}
+                                if ((n >= 1) && (n <= 5)){
+					var date2 = new Date();
+					var ms2 = date2.getTime();
+					sessionStorage.setItem("elapseP2", (ms2-ms1));
+					if (localStorage.getItem("newGame") == "newballs") {
+                                        	$.get( "/motors_page2", function(data) {});
+					}
+					sessionStorage.setItem("choiceP2", options[n-1]);
+					fadeout(n);
+					setTimeout(function(){
+						window.location.href = "/p3";
+					}, 2000);
+				}
+			})};
+		}
+		);
+{% endblock %}

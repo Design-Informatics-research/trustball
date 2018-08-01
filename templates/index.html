@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h1>TRUST BALL</h1>
+	<div class="start">
+		<p>&#171; Press Any Button To Start &#187;</p>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+  sessionStorage.clear();  
+
+  $.get( "/btn_index", function(data) {});
+
+  $(document).keypress(function(e) {
+    var n = numberPress(e.which);
+    if (n == 6){
+        $.get( "/cleanballs", function(data) {});
+        window.location.href = '/';
+     }
+    if ((n >= 1) && (n <= 5)) {
+     	window.location.href = '/terms';
+     }
+  });
+{% endblock %}
+
+
