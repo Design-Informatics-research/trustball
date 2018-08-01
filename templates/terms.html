@@ -19,44 +19,41 @@ If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac
 {% block javascript %}
 	var date1 = new Date();
 	var ms1 = date1.getTime();
-	
 	var originalList = [1,2,3];
 	var randomList = shuffle(originalList);
+
+	timeoutId = setTimeout(function(){
+		window.location.href = "/";
+	}, 60000);
+
 	sessionStorage.setItem("Qs",randomList);
 	//document.getElementById("questionsOrder").innerHTML = sessionStorage.getItem("Qs");
-                
-        $.get( "/btn_summary", function(data) {});
+
+	$.get( "/btn_summary", function(data) {});
 
 	$(document).keypress(function(e) {
 		var n = numberPress(e.which);
-
-		if (n == 6){
-			$.get( "/cleanballs", function(data) {});
-			window.location.href = '/terms';
-		}
+		var date2 = new Date();
+		var ms2 = date2.getTime();
 
 		if (n == 2){
-			var date2 = new Date();
-			var ms2 = date2.getTime();
 			sessionStorage.setItem("elapseTerms", (ms2-ms1));
 			sessionStorage.setItem("choiceTerms", "AGREE");
-                        if (localStorage.getItem("newGame") == "newballs") {
-                        	$.get( "/motor_begin", function(data) {});
+			if (localStorage.getItem("newGame") == "newballs") {
+				$.get( "/motor_begin", function(data) {});
 			}
 			//<!-- do store data -->
 			window.location.href = '/p1';
 		}
 
 		if (n == 4) {
-			var date2 = new Date();
-			var ms2 = date2.getTime();
 			sessionStorage.setItem("elapseTerms", (ms2-ms1));
 			sessionStorage.setItem("choiceTerms", "DISAGREE");
 			if (localStorage.getItem("newGame") == "newballs") {
-                        	$.get( "/motor_begin", function(data) {});
+				$.get( "/motor_begin", function(data) {});
 			}
-                        //<!-- do not store data -->
-				window.location.href = '/p1';
+			//<!-- do not store data -->
+			window.location.href = '/p1';
 		}
 	});
 {% endblock %}

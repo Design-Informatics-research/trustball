@@ -16,14 +16,9 @@
 
   $(document).keypress(function(e) {
     var n = numberPress(e.which);
-    if (n == 6){
-        $.get( "/cleanballs", function(data) {});
-        window.location.href = '/';
-     }
+
     if ((n >= 1) && (n <= 5)) {
      	window.location.href = '/terms';
      }
   });
 {% endblock %}
-
-
