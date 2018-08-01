@@ -1,3 +1,5 @@
+var options = ["Myself", "Friend", "Expert", "Crowd", "AI Bot"];
+
 function shuffle(array) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
 			
@@ -5,12 +7,12 @@ function shuffle(array) {
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;
 
-    	temporaryValue = array[currentIndex];
-    	array[currentIndex] = array[randomIndex];
-   		array[randomIndex] = temporaryValue;
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
    	}
 
-    return array;
+	return array;
 }
 
 function showQ(n){
@@ -51,13 +53,12 @@ function showOPt(seqImg, seqCap, opt){
 }
 
 var numberPress = function(kn){
-  var n = kn - 48;
-  if ((n >= 1) && (n <= 6)){
-    return n;
-  } 
-  else {
-    return false;
-  }
+	var n = kn - 48;
+	if ((n >= 1) && (n <= 6)){
+		return n;
+	} else {
+		return false;
+	}
 };
 
 function fadeout(n){
@@ -92,3 +93,14 @@ function fadeout(n){
 		$("#opt4").fadeTo(2000,0);
 	}
 }
+
+
+$(document).ready(function(){
+	$(document).keypress(function(e) {
+		var n = numberPress(e.which);
+		if (n == 6){
+			$.get( "/cleanballs", function(data) {});
+			location.reload();
+		}
+	});
+});
