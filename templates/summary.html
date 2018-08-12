@@ -43,8 +43,8 @@ EPSRC-funded research project PACTMAN. For more information, please visit www.pa
 
 {% block javascript %}
 		//<!-- print data out -->
-		var elapse = [sessionStorage.getItem("elapseTerms"), sessionStorage.getItem("elapseP1"), sessionStorage.getItem("elapseP2"), sessionStorage.getItem("elapseP3")];
-		var choices = [sessionStorage.getItem("choiceTerms"), sessionStorage.getItem("choiceP1"), sessionStorage.getItem("choiceP2"), sessionStorage.getItem("choiceP3")];
+		var elapse = [sessionStorage.getItem("elapseTerms"), sessionStorage.getItem("elapseP1"), sessionStorage.getItem("elapseP2"), sessionStorage.getItem("elapseP3"), sessionStorage.getItem("elapseAges")];
+		var choices = [sessionStorage.getItem("choiceTerms"), sessionStorage.getItem("choiceP1"), sessionStorage.getItem("choiceP2"), sessionStorage.getItem("choiceP3"), sessionStorage.getItem("choiceAges")];
 
 		if(sessionStorage.getItem("choiceTerms") == "AGREE"){
 			document.getElementById("c1").innerHTML = "1. " + choices[1];
@@ -61,7 +61,25 @@ EPSRC-funded research project PACTMAN. For more information, please visit www.pa
 			$.get( "/btn_summary", function(data) {});
 		}, 4500);
 
-		var data = {"players": ["Terms", choices[0], elapse[0], sessionStorage.getItem("Qs")[0],choices[1], elapse[1], sessionStorage.getItem("Qs")[2],choices[2], elapse[2], sessionStorage.getItem("Qs")[4],choices[3], elapse[3]]};
+                if (localStorage.getItem('newGame') == null) { localStorage.setItem('newGame', 'newballs');  }
+		
+		var data = {"game": localStorage.getItem("newGame"),
+					"timestamp": sessionStorage.getItem("startTime"),
+					"age": choices[4],
+					"age_mspassed": elapse[4],
+					"terms_choice": choices[0],
+					"terms_mspassed": elapse[0],
+					"p1_question": sessionStorage.getItem("Qs")[0],
+					"p1_choice": choices[1],
+					"p1_mspassed": elapse[1],
+				    "p2_question": sessionStorage.getItem("Qs")[2],
+				    "p2_choice": choices[2],
+				    "p2_mspassed": elapse[2],
+					"p3_question": sessionStorage.getItem("Qs")[4],
+					"p3_choice": choices[3],
+					"p3_mspassed": elapse[3],
+		};
+
 
 		fetch('/summary', {method: 'POST', 
 			body: JSON.stringify(data),

@@ -54,23 +54,32 @@ If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac
 			var date2 = new Date();
 			var ms2 = date2.getTime();
 			var mpassed = (ms2-ms1);
-
+                        sessionStorage.setItem("elapseTerms", mpassed);
+			sessionStorage.setItem("startTime", date2);
 			if (n == 2){
 				//<!-- do store data -->
 				sessionStorage.setItem("choiceTerms", "AGREE");
+                                transition('div.agreed', mpassed);
+			        setTimeout(function(){
+				  if (localStorage.getItem("newGame") == "newballs") {
+					$.get( "/motor_begin", function(data) {});
+				}
+				window.location.href = '/demogram';
+			}, 4500);
 			} else  {
 				//<!-- do not store data -->
 				sessionStorage.setItem("choiceTerms", "DISAGREE");
-			}
-
-			sessionStorage.setItem("elapseTerms", mpassed);
-			transition('div.agreed', mpassed);
-			setTimeout(function(){
-				if (localStorage.getItem("newGame") == "newballs") {
+                                transition('div.disagreed', mpassed);
+			        setTimeout(function(){
+				  if (localStorage.getItem("newGame") == "newballs") {
 					$.get( "/motor_begin", function(data) {});
 				}
 				window.location.href = '/p1';
-			}, 7000);
+			}, 4500);
+			}
+
+			
+			
 
 		}
 	});

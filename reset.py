@@ -45,7 +45,7 @@ def open_all():
     pwm.set_pwm(2, 0, 400)
     pwm.set_pwm(4, 0, 400)
     pwm.set_pwm(6, 0, 400)
-    time.sleep(2)
+    time.sleep(3)
 
 def close_all():
     pwm.set_pwm(1, 0, 450)
@@ -56,7 +56,7 @@ def close_all():
     pwm.set_pwm(6, 0, 150)
 
 def reset1():
-    pwm.set_pwm(0, 0, 150) 
+    pwm.set_pwm(0, 0, 150)
     pwm.set_pwm(1, 0, 150)
     pwm.set_pwm(3, 0, 150)
     pwm.set_pwm(5, 0, 150)
@@ -67,3 +67,8 @@ def reset1():
 open_all()
 close_all()
 #reset1()
+#pwm.set_pwm(0, 0, 150)
+#time.sleep(1)
+#pwm.set_pwm(0, 0, 600)
+#time.sleep(1)
+#pwm.set_pwm(0, 0, 150)

@@ -7,4 +7,6 @@ __pycache__/
 
 data.json
 bork.py
-
+dataOld.json
+*.json
+localstorage*
