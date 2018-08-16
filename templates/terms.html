@@ -50,13 +50,13 @@ If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac
 	$(document).keypress(function(e) {
 		var n = numberPress(e.which);
 
-		if (n == 2 || n == 4) {
+		if (n >= 1 && n <= 5) {
 			var date2 = new Date();
 			var ms2 = date2.getTime();
 			var mpassed = (ms2-ms1);
                         sessionStorage.setItem("elapseTerms", mpassed);
 			sessionStorage.setItem("startTime", date2);
-			if (n == 2){
+			if (n <= 3 ){
 				//<!-- do store data -->
 				sessionStorage.setItem("choiceTerms", "AGREE");
                                 transition('div.agreed', mpassed);
@@ -66,19 +66,17 @@ If you want to withdraw your consent in the future, contact bettina.nissen@ed.ac
 				}
 				window.location.href = '/demogram';
 			}, 4500);
-			} else  {
+			} else {
 				//<!-- do not store data -->
 				sessionStorage.setItem("choiceTerms", "DISAGREE");
                                 transition('div.disagreed', mpassed);
 			        setTimeout(function(){
 				  if (localStorage.getItem("newGame") == "newballs") {
 					$.get( "/motor_begin", function(data) {});
-				}
-				window.location.href = '/p1';
-			}, 4500);
+				  }
+				  window.location.href = '/p1';
+				}, 4500);
 			}
-
-			
 			
 
 		}
