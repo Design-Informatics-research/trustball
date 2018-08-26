@@ -110,12 +110,12 @@ EPSRC-funded research project PACTMAN. For more information, please visit www.pa
 		$(document).keypress(function(e) {
 			var n = numberPress(e.which);
 
-			if (n == 2 || n == 1 ){
+			if (n <= 2){
 				localStorage.setItem("newGame", "noballs");
 				window.location.href = "/";
 			}
 
-			if (n == 4 || n == 5) {
+			if (n >= 4) {
 				localStorage.setItem("newGame", "newballs");
 				window.location.href = "/";
 			}

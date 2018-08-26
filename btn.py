@@ -18,8 +18,8 @@ buttons = {
 }
 
 buttons24 = {
-  17: { 'key': '1', 'led': 18 },
-  19: { 'key': '5', 'led': 20 },
+  27: { 'key': '2', 'led': 22 },
+  5: { 'key': '4', 'led': 6 },
 }
 
 def all_on():
