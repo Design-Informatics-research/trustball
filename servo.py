@@ -124,7 +124,7 @@ def page3():
     random(6)
     #time.sleep(0.1)
 
-open_slower()
+#open_slower()
 #time.sleep(1)
 #page1()
 #page2()

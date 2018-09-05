@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<p class="bender" id="question">
+		<span class="bold">Which age group are you?</span><br/><br/>
+		<span>Don't worry you can still play the game.</span></p>
+	<ul id="ul_ages">
+		<li id="opt1">
+			<img src="../assets/age-01.png">
+		</li>
+		<li id="opt2">
+			<img src="../assets/age-02.png">
+		</li>
+		<li id="opt3">
+			<img src="../assets/age-03.png">
+		</li>
+		<li id="opt4">
+			<img src="../assets/age-04.png">
+		</li>
+		<li id="opt5">
+			<img src="../assets/age-05.png">
+		</li>
+	</ul>
+{% endblock %}
+
+{% block javascript %}
+	handleGameTimeout();
+
+	ages = ['15', '16-25', '26-40', '41-60', '61'];
+
+	$.get( "/btn_Qs", function(data) {});
+	var date1 = new Date();
+	var ms1 = date1.getTime();
+
+	$(document).keypress(function(e) {
+		var n = numberPress(e.which);
+
+		if ((n >= 1) && (n <= 5)){
+			var date2 = new Date();
+			var ms2 = date2.getTime();
+			sessionStorage.setItem("elapseAges", (ms2-ms1));
+			sessionStorage.setItem("choiceAges", ages[n-1]);
+			fadeout(n);
+
+			setTimeout(function(){
+				window.location.href = '/p1';
+			}, 2000);
+		}
+	});
+{% endblock %}

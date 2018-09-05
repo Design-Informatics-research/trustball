@@ -107,7 +107,7 @@ $(document).ready(function(){
 		var n = numberPress(e.which);
 		if (n == 6){
 			$.get( "/cleanballs", function(data) {});
-			location.reload();
+			window.location.href = "/";
 		}
 	});
 });

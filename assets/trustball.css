@@ -139,6 +139,15 @@ ul {
 	margin: 0 4%;
 }
 
+#ul_ages {
+	position: absolute;
+	text-align: center;
+	bottom: 8vh;
+	width: 92%;
+	padding: 0px;
+	margin: 0 4%;
+}
+
 #ul_agreementBtn {
     bottom: 8vh;
 }
@@ -151,6 +160,10 @@ ul {
 }
 
 #ul_questions img {
+	    width: 60%;
+}
+
+#ul_ages img {
 	    width: 60%;
 }
 

@@ -4,6 +4,8 @@ import btn as btn
 import reset as reset
 import json
 import time
+import datetime
+
 from thread2 import StopThread, Thread2
 import RPi.GPIO as GPIO
 
@@ -29,6 +31,10 @@ def send_asset(path):
 @app.route("/")
 def hello():
   return render_template('index.html')
+
+@app.route("/demogram")
+def demogram():
+  return render_template('demogram.html')
 
 @app.route("/index_reset")
 def index_reset():
@@ -95,7 +101,9 @@ def motors_page3():
 def summary():
   if request.method == 'POST':
     d = request.get_json()
-    with open('data.json', 'a') as f:
+    today = datetime.date.today()
+    name = str(today) + ".json"
+    with open(name, 'a') as f:
       json.dump(d,f)
       f.write('\n')
     return jsonify({"Message": "Sucess"}),200
