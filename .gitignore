@@ -7,6 +7,7 @@ __pycache__/
 
 data.json
 bork.py
+devnotes.md
 dataOld.json
 *.json
 localstorage*
